@@ -12,6 +12,8 @@ object PhonemojiHelper {
 
   private val phoneNumberUtil = PhoneNumberUtilInstanceProvider.get()
 
+  var regionCode = ""
+
   /**
    * Watches the input of [PhonemojiTextInputEditText] and invokes `onCountryChange` whenever the phone number's country
    * changes.
@@ -38,7 +40,7 @@ object PhonemojiHelper {
             if (currentCountryCode == countryCode) return
 
             // Otherwise, we get the region code for the country code, so we can translate it to a flag emoji.
-            val regionCode = phoneNumberUtil.getRegionCodeForCountryCode(countryCode)
+            regionCode = phoneNumberUtil.getRegionCodeForCountryCode(countryCode)
 
             // If we can't get a valid region code, we give up.
             if (regionCode == UNKNOWN_REGION) return
